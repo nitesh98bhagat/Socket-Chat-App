@@ -1,20 +1,21 @@
 const chatForm = document.getElementById("chat-form");
+const roomName = document.getElementById("room-name");
+const userList = document.getElementById("users");
 const chatMSG = document.querySelector(".chat-messages");
 
 const { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true,
 });
 
-console.log(username, room);
+roomName.innerHTML = room;
 
 const socket = io();
 
-socket.emit("joinRoom", {username, room});
-
+socket.emit("joinRoom", { username, room });
 
 //catching the event from the server
 socket.on("message", (message) => {
-  outputMSG(message); 
+  outputMSG(message);
 
   //auto-scroll down
   chatMSG.scrollTop = chatMSG.scrollHeight;
@@ -23,7 +24,7 @@ socket.on("message", (message) => {
 chatForm.addEventListener("submit", (e) => {
   e.preventDefault();
   const msg = e.target.elements.msg.value;
-  socket.emit("chatMSG", {username,msg,room});
+  socket.emit("chatMSG", { username, msg, room });
   e.target.elements.msg.value = "";
   e.target.elements.msg.focus();
 });

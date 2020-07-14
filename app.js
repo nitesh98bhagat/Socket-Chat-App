@@ -43,7 +43,7 @@ io.on("connection", (socket) => {
         .to(room)
         .emit(
           "message",
-          formatMessage("ChatCord", `A ${username} has left the ${room} chat`)
+          formatMessage("ChatCord", ` ${username} has left the chat`)
         );
     });
   });
