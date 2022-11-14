@@ -29,6 +29,8 @@ chatForm.addEventListener("submit", (e) => {
   e.target.elements.msg.focus();
 });
 
+
+
 function outputMSG(message) {
   const div = document.createElement("div");
 
